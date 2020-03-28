@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore , applyMiddleware} from 'redux';
+import {createStore , applyMiddleware , combineReducers} from 'redux';
 import {Provider} from 'react-redux'
 import {createLogger} from 'redux-logger';
 import thunkMiddleware from 'redux-thunk'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {searchLaptops} from './reducer'
+import {searchLaptops , onItemClick} from './reducer'
 
 
 const logger = createLogger();
+const rootReducer = combineReducers({ searchLaptops , onItemClick })
 
-const store = createStore(searchLaptops ,applyMiddleware(thunkMiddleware , logger) );
+const store = createStore(rootReducer ,applyMiddleware(thunkMiddleware , logger) );
 
 
 ReactDOM.render(

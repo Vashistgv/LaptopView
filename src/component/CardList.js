@@ -1,16 +1,26 @@
 import React from 'react';
 import Card from './card';
+import {connect} from 'react-redux';
+import {onItemClick} from '../action'
+
+const mapDispatchToProps = dispatch => ({
+    onCardClick : event => dispatch(onItemClick(event.currentTarget.id))
+})
 
 
-const CardList = ({robots}) => {
+
+
+const CardList = ({Items  , onCardClick} ) => {
     return(
         <div>
         {
-          robots.map(robot =>   <Card
-             id={robot.id}
-             name={robot.name} 
-             email={robot.email}     
-             username ={robot.username}
+          Items.map(item =>   <Card
+            title={item.title}
+            imgsrc={item.productImages}
+             price={item.price} 
+             exchangeOffer={item.exchangeOffer}     
+             id ={item.id}
+             onCardClick={onCardClick}
                />
           )
         }
@@ -19,4 +29,4 @@ const CardList = ({robots}) => {
     )
 }
 
-export default CardList ;
+export default connect(null , mapDispatchToProps)(CardList)

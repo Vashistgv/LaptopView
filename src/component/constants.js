@@ -1,4 +1,4 @@
-   export const robots =  [
+   export const laptops =  [
   {
     id: 'COMFJHDZA3SHDDXY-1',
     title: 'HP 15 Core i3 7th Gen - (8 GB/1 TB HDD/Windows 10 Home) 15-da0400TU Laptop',

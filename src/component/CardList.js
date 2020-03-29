@@ -1,32 +1,43 @@
 import React from 'react';
 import Card from './card';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom' ;
 import {onItemClick} from '../action'
 
 const mapDispatchToProps = dispatch => ({
-    onCardClick : event => dispatch(onItemClick(event.currentTarget.id))
+    onICardClick : event => dispatch(onItemClick(event.currentTarget.id))
 })
 
 
+class CardList extends React.Component {
 
+onCardClick = (e) => {
+  this.props.history.push('/LaptopDetails')
 
-const CardList = ({Items  , onCardClick} ) => {
+   this.props.onICardClick(e)
+}
+  render(){
+    const {Items  } = this.props
     return(
-        <div>
-        {
-          Items.map(item =>   <Card
-            title={item.title}
-            imgsrc={item.productImages}
-             price={item.price} 
-             exchangeOffer={item.exchangeOffer}     
-             id ={item.id}
-             onCardClick={onCardClick}
-               />
-          )
-        }
-        
-      </div>
-    )
+      <div>
+      {
+        Items.map(item =>   <Card
+          title={item.title}
+          imgsrc={item.productImages}
+           price={item.price} 
+           exchangeOffer={item.exchangeOffer}     
+           id ={item.id}
+           onCardClick={this.onCardClick}
+             />
+        )
+      }
+      
+    </div>
+  )
+
+  }
 }
 
-export default connect(null , mapDispatchToProps)(CardList)
+
+
+export default withRouter(connect(null , mapDispatchToProps)(CardList))
